@@ -24,3 +24,4 @@ df["age"] = df['age'].fillna(0) # fill na cells with 0
 # Histogram
 df.hist()
 plt.show()
+print("hellow")
