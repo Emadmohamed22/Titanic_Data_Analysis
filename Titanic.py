@@ -40,9 +40,17 @@ for gen in df['sex'].unique() :
     print("servived : ","%.2f" % survived_percentage , '%')
     print("\n=====\n")
 
+# Dictionary to define class catagories
+
+class_dict = {
+    1:"class A",
+    2:"class B",
+    3:"class C"
+}
+
 # analyzing percentge of survived for pclass
 for x_class in df['pclass'].unique() :
-    print(x_class)
+    print(class_dict[x_class])
     pclass_df = df[df['pclass']==x_class]
     sur_class = pclass_df[pclass_df['survived']==1]
     sur_percentage = (sur_class.shape[0] / pclass_df.shape[0])*100
