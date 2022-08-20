@@ -37,5 +37,16 @@ for gen in df['sex'].unique() :
     gender_df = df[df['sex']==gen]
     survived = gender_df[gender_df['survived']==1]
     survived_percentage = (survived.shape[0] / gender_df.shape[0]) * 100
+    print("count of : " , gender_df.shape[0])
     print("servived : ","%.2f" % survived_percentage , '%')
     print("\n=====\n")
+
+# analyzing percentge of survived for pclass
+
+for x_class in df['pclass'].unique() :
+    print(x_class)
+    pclass_df = df[df['pclass']==x_class]
+    sur_class = pclass_df[pclass_df['survived']==1]
+    sur_percentage = (sur_class.shape[0] / pclass_df.shape[0])*100
+    print("count of : " , pclass_df.shape[0])
+    print("servived : ","%.2f" % sur_percentage , '%')
