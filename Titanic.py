@@ -1,5 +1,6 @@
 from asyncore import read
 import imp
+from operator import ge
 import os
 import pandas as pd 
 import matplotlib.pyplot as plt
@@ -24,3 +25,17 @@ df["age"] = df['age'].fillna(0) # fill na cells with 0
 # Histogram
 df.hist()
 plt.show()
+
+# data analyzing
+print(df['sex'].value_counts())
+print(df['pclass'].value_counts())
+
+# analyzing percentge of survived for men and women
+
+for gen in df['sex'].unique() :
+    print(gen)
+    gender_df = df[df['sex']==gen]
+    survived = gender_df[gender_df['survived']==1]
+    survived_percentage = (survived.shape[0] / gender_df.shape[0]) * 100
+    print("servived : ","%.2f" % survived_percentage , '%')
+    print("\n=====\n")
