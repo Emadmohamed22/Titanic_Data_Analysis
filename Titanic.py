@@ -31,7 +31,6 @@ print(df['sex'].value_counts())
 print(df['pclass'].value_counts())
 
 # analyzing percentge of survived for men and women
-
 for gen in df['sex'].unique() :
     print(gen)
     gender_df = df[df['sex']==gen]
@@ -42,7 +41,6 @@ for gen in df['sex'].unique() :
     print("\n=====\n")
 
 # analyzing percentge of survived for pclass
-
 for x_class in df['pclass'].unique() :
     print(x_class)
     pclass_df = df[df['pclass']==x_class]
@@ -50,3 +48,41 @@ for x_class in df['pclass'].unique() :
     sur_percentage = (sur_class.shape[0] / pclass_df.shape[0])*100
     print("count of : " , pclass_df.shape[0])
     print("servived : ","%.2f" % sur_percentage , '%')
+    print("\n=====\n")
+
+# function to convert age to catagories
+def age_to_catagory(age) : 
+    if age < 4 :
+        return 0 #baby
+    elif age < 10 :
+        return 1 #child
+    elif age < 21 :
+        return 2 #teen
+    elif age < 33 :
+        return 3 #young adult
+    elif age < 50 :
+        return 4 #elder
+    return 5 #elder
+
+# Dictionary to define age catagories
+age_cats_dict = {
+    0:"baby",
+    1:"child",
+    2:"teen",
+    3:"young adult",
+    4:"adult",
+    5:"elder"
+} 
+# Create a new column to classify ages
+df['age_cat'] = df['age'].apply(age_to_catagory)
+
+# analyzing percentge of survived for each age
+for a in df['age_cat'].unique():
+    print(age_cats_dict[a])
+    age_df =df [df['age_cat']==a]
+    age_sur_df = age_df[age_df['survived']==1]
+    sur_percentage_age = (age_sur_df.shape[0] / age_df.shape[0])*100
+    print("count of : " , age_df.shape[0])
+    print("servived : ","%.2f" % sur_percentage_age , '%')
+    print("\n=====\n")
+
